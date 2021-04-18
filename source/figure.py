@@ -4,10 +4,18 @@ class Figure:
     def __init__(self, name, angles):
         self.name = name
         self.angles = angles
+
     def get_perimeter(self):
         pass
+
     def get_area(self):
         pass
+
+    def add_area(self, figure):
+        if figure.name != self.name and figure.name in (square.name, triangle.name, rectangle.name, circle.name):
+            return self.get_area() + figure.get_area()
+        else:
+            raise ValueError('wrong class passed')
 
 class Triangle(Figure):
     def __init__(self, a, b, c, height):
@@ -48,7 +56,7 @@ class Square(Figure):
 
 class Circle(Figure):
     def __init__(self, r):
-        super().__init__('rectangle', 4)
+        super().__init__('circle', 4)
         self.r = r
 
     def get_area(self):
@@ -56,3 +64,11 @@ class Circle(Figure):
 
     def get_perimeter(self):
         return 2 * math.pi * self.r
+
+triangle = Triangle(3,4,5,4)
+square = Square(4)
+rectangle = Rectangle(3,4)
+circle = Circle(4)
+print(circle.get_area())
+print(triangle.add_area(square))
+
