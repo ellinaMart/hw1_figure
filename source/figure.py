@@ -12,7 +12,8 @@ class Figure:
         pass
 
     def add_area(self, figure):
-        if figure.name != self.name and figure.name in (square.name, triangle.name, rectangle.name, circle.name):
+        # проверяем если передается не геометрическая фигура или передается та же фигура, для которой вызываем метод, выводим ошибку
+        if figure.name != self.name and figure.name in ('triangle','rectangle','square','circle'):
             return self.get_area() + figure.get_area()
         else:
             raise ValueError('wrong class passed')
@@ -64,11 +65,4 @@ class Circle(Figure):
 
     def get_perimeter(self):
         return 2 * math.pi * self.r
-
-triangle = Triangle(3,4,5,4)
-square = Square(4)
-rectangle = Rectangle(3,4)
-circle = Circle(4)
-print(circle.get_area())
-print(triangle.add_area(square))
 
