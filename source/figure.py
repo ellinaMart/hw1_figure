@@ -9,11 +9,11 @@ class Figure:
         pass
 
     def get_area(self):
-        pass
+        raise NotImplementedError
 
     def add_area(self, figure):
         # проверяем если передается не геометрическая фигура или передается та же фигура, для которой вызываем метод, выводим ошибку
-        if figure.name != self.name and figure.name in ('triangle','rectangle','square','circle'):
+        if figure.name != self.name and isinstance(figure, (Triangle, Rectangle, Square, Circle)):
             return self.get_area() + figure.get_area()
         else:
             raise ValueError('wrong class passed')
